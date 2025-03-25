@@ -13,7 +13,7 @@ const postFilter = ({ data }: CollectionEntry<"blog">) => {
   );
 
   const isPublishTimePassed =
-    Date.now() > pubDatetime.millisecond() - SITE.scheduledPostMargin;
+    dayjs().tz(SITE.timezone).millisecond() > pubDatetime.millisecond() - SITE.scheduledPostMargin;
   return !data.draft && (import.meta.env.DEV || isPublishTimePassed);
 };
 
